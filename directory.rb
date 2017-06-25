@@ -48,14 +48,19 @@ end
 def process(selection)
   case selection
   when "1"
+    puts "You chose to add students."
     input_students
   when "2"
+    puts "You chose to list students."
     show_students
   when "3"
+    puts "Saved."
     save_students
   when "4"
+    puts "Loading"
     load_students
   when "9"
+    puts "Successfully exiting programme."
     exit
   else
     puts "I don't know what you meant, try again"
@@ -90,8 +95,9 @@ end
 
 def try_load_students
   filename = ARGV.first
-  return if filename.nil?
-  if File.exists?(filename)
+  if filename.nil?
+    load_students(filename = "students.csv")
+  elsif File.exists?(filename)
     load_students(filename)
     puts "Loaded #{@students.count} from #{filename}"
   else
@@ -100,4 +106,5 @@ def try_load_students
   end
 end
 
+try_load_students
 interactive_menu
